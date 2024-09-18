@@ -1,0 +1,53 @@
+let campoIdade;
+let campoComedia;
+let campoTerror;
+
+function setup() {
+  createCanvas(800, 400);
+  createElement("h2", "Recomendador de filmes");
+  createSpan("Sua idade:");
+  campoIdade = createInput("5");
+  campoComedia = createCheckbox("Gosta de Comédia?");
+  campoTerror = createCheckbox("Gosta de Terror?");
+}
+
+function draw() {
+  background("rgb(0,0,0)");
+  let idade = campoIdade.value();
+  let gostaDeComedia = campoComedia.checked();
+  let gostaDeTerror = campoTerror.checked();
+  let recomendacao = geraRecomendacao(idade, gostaDeComedia, gostaDeTerror);
+
+  fill(color(76, 0, 115));
+  textAlign(CENTER, CENTER);
+  textSize(38);
+  text(recomendacao, width / 2, height / 2);
+}
+
+function geraRecomendacao(idade, gostaDeComedia, gostaDeTerror) {
+  if (idade >= 10) {
+    if (idade >= 14) {
+      return "Rua do Medo";
+    } else {
+      if (idade >= 12) {
+        if(gostaDeComedia || gostaDeTerror) {
+          return "Farofeiros 2"
+        } else{
+         return "Crô"
+        }
+      } else {
+        if (gostaDeComedia) {
+          return "Todo Mundo em Pânico"
+        } else {
+          return "A Babá 2"
+        }
+      }
+    }
+  } else {
+    if (gostaDeComedia) {
+      return "O Pacote"
+    } else {
+      return "A Minha Mãe é Uma Peça"
+    }
+  }
+}
